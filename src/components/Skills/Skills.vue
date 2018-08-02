@@ -8,8 +8,11 @@
         </transition>
       </form>
       <ul>
-        <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
-          <li v-for="(data, index) in skills" :key='index'>{{ data.skill }}</li>
+        <transition-group name="list" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+          <li v-for="(data, index) in skills" :key='index'>
+            <span class="skill-text">{{ data.skill }}</span>
+            <font-awesome-icon icon="minus-circle" v-on:click="removeSkill(index)" />
+          </li>
         </transition-group>
       </ul>
       <p>These are the skills that you possess.</p>
@@ -38,6 +41,9 @@ export default {
           this.skill = ''
         }
       })
+    },
+    removeSkill(index) {
+      this.skills.splice(index, 1);
     }
   }
 }
